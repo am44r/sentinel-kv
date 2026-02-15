@@ -1,0 +1,14 @@
+# Compiled Binaries
+bin/
+*.o
+kv_store
+
+# Data files (Don't commit your actual database!)
+data/*.db
+
+# IDE specific
+.vscode/
+.vscodium/
+
+# Logs
+*.log
