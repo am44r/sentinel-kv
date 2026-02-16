@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "../include/storage.h"
 #include "../include/hashmap.h"
+#include "../include/network.h"
 
 int main() {
     FILE *db = fopen("data/storage.db", "rb+");
@@ -14,13 +15,7 @@ int main() {
     storage_load(db, &index);
     printf("Database loaded.\n");
 
-    long offset = hashmap_get(&index, "user:1");
-    if (offset != -1) {
-        printf("Recovered 'user:1' from disk! Offset: %ld\n", offset);
-    } else {
-        printf("Could not find 'user:1'. Is this the first run?\n");
-    }
-
+    server_start(6379, &index, db);
 
     hashmap_destroy(&index);
     fclose(db);
