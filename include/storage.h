@@ -1,6 +1,7 @@
 #ifndef STORAGE_H
 #define STORAGE_H
 
+#include "hashmap.h"
 #include <stdint.h>
 #include <stdio.h>
 
@@ -12,5 +13,6 @@ typedef struct {
 
 long storage_put(FILE *fp, const char *key, const char *value);
 char* storage_get(FILE *fp, long offset);
+void storage_load(FILE *fp, SimpleHashMap *map);
 
 #endif

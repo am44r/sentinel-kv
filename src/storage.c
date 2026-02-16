@@ -47,3 +47,26 @@ char* storage_get(FILE *fp, long offset)
 
     return value;
 }
+
+void storage_load(FILE *fp, SimpleHashMap *map)
+{
+    rewind(fp);
+
+    EntryHeader header;
+    long current_offset = 0;
+
+    while (fread(&header, sizeof(EntryHeader), 1, fp) == 1)
+    {
+        char *key = malloc(header.key_length + 1);
+        fread(key, sizeof(char), header.key_length, fp);
+        key[header.key_length] = '\0';
+
+        hashmap_put(map, key, current_offset);
+
+        fseek(fp, header.val_length, SEEK_CUR);
+
+        free(key);
+
+        current_offset += sizeof(EntryHeader) + header.val_length + header.key_length;
+    }
+}
