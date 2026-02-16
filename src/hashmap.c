@@ -74,3 +74,23 @@ void hashmap_destroy(SimpleHashMap *map) {
         }
     }
 }
+
+void hashmap_remove(SimpleHashMap *map, const char *key)
+{
+    unsigned long index = hash(key) % TABLE_SIZE;
+    unsigned long original_index = index;
+
+    while (map->entries[index].is_occupied)
+    {
+        if (strcmp(map->entries[index].key, key) == 0)
+        {
+           free(map->entries[index].key);
+            map->entries[index].key = NULL;
+            map->entries[index].offset = 0;
+            map->entries[index].is_occupied = 0;
+            return; 
+        }
+        index = (index + 1) % TABLE_SIZE;
+        if (index == original_index) return;
+    }
+}

@@ -53,6 +53,16 @@ void handle_client(int client_fd, SimpleHashMap *index, FILE *db) {
             send(client_fd, msg, strlen(msg), 0);
         }
     } 
+    else if (command && strcmp(command, "DELETE") == 0) {
+        if (key) {
+            hashmap_remove(index, key);
+            char *msg = "+OK\n";
+            send(client_fd, msg, strlen(msg), 0);
+        } else {
+            char *msg = "-ERR Usage: DELETE key\n";
+            send(client_fd, msg, strlen(msg), 0);
+        }
+    }
     else {
         char *msg = "-ERR Unknown Command\n";
         send(client_fd, msg, strlen(msg), 0);

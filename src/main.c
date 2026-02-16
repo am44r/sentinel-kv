@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "../include/storage.h"
 #include "../include/hashmap.h"
 #include "../include/network.h"

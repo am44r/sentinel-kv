@@ -20,5 +20,6 @@ void hashmap_init(SimpleHashMap *map);
 void hashmap_put(SimpleHashMap *map, const char *key, long offset);
 long hashmap_get(SimpleHashMap *map, const char *key);
 void hashmap_destroy(SimpleHashMap *map);
+void hashmap_remove(SimpleHashMap *map, const char *key);
 
 #endif
