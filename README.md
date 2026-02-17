@@ -4,8 +4,6 @@
 ## OVERVIEW
 Sentinel-KV is a minimalist, networked key-value store built from scratch. No external dependencies, no bloated frameworks—just raw C accessing memory and disk. It implements a persistent Log-Structured storage engine backed by an in-memory hash index.
 
-It runs on port **6379** because it aims to replace Redis (eventually, maybe, probably not).
-
 **Author:** Amaar Sana
 **License:** MIT
 
