@@ -82,3 +82,8 @@ typedef struct {
     uint32_t val_length; // 4 bytes
 } EntryHeader;
 ```
+## Run with Docker
+If you have Docker installed, you can build and run Sentinel-KV without installing GCC:
+
+1. Build: `docker build -t sentinel-kv .`
+2. Run: `docker run -p 6379:6379 -v $(pwd)/data:/app/data sentinel-kv`
